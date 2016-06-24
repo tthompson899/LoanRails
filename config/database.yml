@@ -82,4 +82,4 @@ production:
   <<: *default
   database: belt_exam_production
   username: belt_exam
-  password: <%= ENV['BELT_EXAM_DATABASE_PASSWORD'] %>
+  password: 
