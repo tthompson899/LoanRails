@@ -1,0 +1,73 @@
+<p>Name: <%= @lender.first_name %> <%= @lender.last_name %></p>
+<p>Account Balance: $<%= @lender.money %></p>
+<a href="/sessions/destroy" data-method="delete">Logout</a>
+<h1>List of people in need of help: </h1>
+  <% if flash[:danger] %>
+    <% flash[:danger].each do |err| %>
+      <p><%= err %></p>
+    <% end %>
+  <% end %>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Need Money for</th>
+    <th>Reason for Loan</th>
+    <th>Amount Needed</th>
+    <th>Amount Raised</th>
+    <th>Action</th>
+  </tr>
+  <% @help.each do |h| %>
+    <% h.histories.each do |lend| %>
+      <% if lend.lender_id != session[:user_id] %>
+    <% end %>
+  <tr>
+    <td><%= h.first_name %> <%= h.last_name %></td>
+    <td><%= h.purpose %></td>
+    <td><%= h.description %></td>
+    <td>$<%= h.needed %></td>
+    <td>$<%= h.raised %></td>
+    <td>
+      <form action="/borrowers/<%= h.id %>" method="post">
+      <select name="raised">
+        <% @money.each do |mon| %>
+        <option><%= mon %></option>
+        <% end %>
+      </select>
+          <input type="hidden" name="_method" value="patch">
+          <input type="hidden" name="lender_id" value="<%= @lender.id %>">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="submit" value="Lend">
+        </form>
+    </td>
+  </tr>
+  <% end %>
+ <% end %>
+</table>
+
+<h1>List of people you lend to: </h1>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Need Money For</th>
+    <th>Reason for Loan</th>
+    <th>Amount Needed</th>
+    <th>Amount Raised</th>
+    <th>Amount Lent</th>
+  </tr>
+  <% @help.each do |help| %>
+    <% help.histories.each do |lend| %>
+      <% if lend.lender_id == @lender.id %>
+    <% end %>
+    <tr>
+      <td><%= help.first_name %> <%= help.last_name %></td>
+      <td><%= help.purpose %></td>
+      <td><%= help.description %></td>
+      <td><%= help.needed %></td>
+      <td><%= help.raised %></td>
+      <% help.histories.each do |amount| %>
+      <td><%= amount.amount %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

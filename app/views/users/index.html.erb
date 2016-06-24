@@ -1,0 +1,51 @@
+  <h1>Register</h1>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |err| %>
+      <%= err %>
+    <% end %>
+  <% end %>
+  <form action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <legend> Lender:
+    <fieldset>
+      First Name: <input type="text" name="register[first_name]">
+      Last Name: <input type="text" name="register[last_name]">
+      Email: <input type="text" name="register[email]">
+      Password: <input type="password" name="register[password]">
+      Confirm Password: <input type="password" name="register[password_confirmation]">
+      Money:
+      <select name="register[money]">
+        <% @money.each do |mon| %>
+        <option><%= mon %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Register">
+    </fieldset>
+    </legend>
+  </form>
+
+  <form action="/borrowers" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <legend> Borrower:
+      <fieldset>
+        First Name: <input type="text" name="borrow[first_name]">
+        Last Name: <input type="text" name="borrow[last_name]">
+        Email: <input type="text" name="borrow[email]">
+        Password: <input type="password" name="borrow[password]">
+        Confirm Password: <input type="password" name="borrow[password_confirmation]">
+        Need Money For: <input type="text" name="borrow[purpose]">
+        Description:
+        <textarea name="borrow[description]" rows="8" cols="40"></textarea>
+        Amount Needed:
+        <select name="borrow[needed]">
+          <% @money.each do |mon| %>
+          <option><%= mon %></option>
+          <% end %>
+        </select>
+        <input type="submit" value="Register">
+      </fieldset>
+    </legend>
+  </form>
+
+
+<a href="/sessions">Already a Member?</a>
