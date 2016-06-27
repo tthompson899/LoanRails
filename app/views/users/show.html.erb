@@ -25,7 +25,7 @@
     <td>$<%= h.raised %></td>
     <td>
       <form action="/borrowers/<%= h.id %>" method="post">
-      <select name="raised">
+      <select name="raised" class="browser-default">
         <% @money.each do |mon| %>
         <option><%= mon %></option>
         <% end %>
