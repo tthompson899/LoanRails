@@ -17,8 +17,6 @@
     <th>Action</th>
   </tr>
   <% @help.each do |h| %>
-    <%# h.histories.each do |lend| %>
-    <%# end %>
   <tr>
     <td><%= h.first_name %> <%= h.last_name %></td>
     <td><%= h.purpose %></td>
@@ -55,7 +53,6 @@
   <% @help.each do |help| %>
     <% help.histories.each do |lend| %>
       <% if lend.lender_id == @lender.id %>
-    <% end %>
     <tr>
       <td><%= help.first_name %> <%= help.last_name %></td>
       <td><%= help.purpose %></td>
@@ -66,6 +63,7 @@
       <td><%= amount.amount %></td>
       <% end %>
     </tr>
+      <% end %>
     <% end %>
   <% end %>
 </table>
