@@ -11,12 +11,14 @@
     <th>Amount Lent</th>
   </tr>
   <% @borrow.each do |money| %>
+    <% if money.id == session[:user_id] %>
    <% money.lenders.each do |lender|%>
   <tr>
     <td><%= lender.first_name %> <%= lender.last_name %></td>
     <td><%= lender.email %></td>
     <td><%= lender.money %></td>
   </tr>
+      <% end %>
     <% end %>
   <% end %>
 </table>
