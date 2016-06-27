@@ -14,7 +14,7 @@
       Password: <input type="password" name="register[password]">
       Confirm Password: <input type="password" name="register[password_confirmation]">
       Money:
-      <select name="register[money]">
+      <select name="register[money]" class="browser-default">
         <% @money.each do |mon| %>
         <option><%= mon %></option>
         <% end %>
@@ -37,7 +37,7 @@
         Description:
         <textarea name="borrow[description]" rows="8" cols="40"></textarea>
         Amount Needed:
-        <select name="borrow[needed]">
+        <select name="borrow[needed]" class="browser-default">
           <% @money.each do |mon| %>
           <option><%= mon %></option>
           <% end %>

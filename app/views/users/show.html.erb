@@ -1,13 +1,13 @@
 <p>Name: <%= @lender.first_name %> <%= @lender.last_name %></p>
 <p>Account Balance: $<%= @lender.money %></p>
 <a href="/sessions/destroy" data-method="delete">Logout</a>
-<h1>List of people in need of help: </h1>
+<h4>List of people in need of help: </h4>
   <% if flash[:danger] %>
     <% flash[:danger].each do |err| %>
       <p><%= err %></p>
     <% end %>
   <% end %>
-<table border="1">
+<table class="striped" class="responsive-table">
   <tr>
     <th>Name</th>
     <th>Need Money for</th>
@@ -40,8 +40,8 @@
   <% end %>
 </table>
 
-<h1>List of people you lend to: </h1>
-<table border="1">
+<h4>List of people you lend to: </h4>
+<table class="striped" class="responsive-table">
   <tr>
     <th>Name</th>
     <th>Need Money For</th>
