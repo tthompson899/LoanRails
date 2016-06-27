@@ -5,11 +5,18 @@
 <% if flash[:errors] %>
   <%= flash[:errors] %>
 <% end %>
+<div class="row">
   <form action="/sessions" method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    Email: <input type="text" name="email">
-    Password: <input type="password" name="password">
-    <input type="submit" value="Login">
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        Email: <input type="text" name="email">
+        Password: <input type="password" name="password">
+        <input type="submit" value="Login">
+      </div>
+    </div>
   </form>
+</div>
+
 
   <a href="/">Click Here to Register</a>
