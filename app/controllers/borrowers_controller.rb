@@ -28,6 +28,7 @@ class BorrowersController < ApplicationController
     # Adding and updating the borrowers record
     total =  borrow.raised
     total += amount
+    render json: total
 
     if borrow.needed == nil
       borrow.needed = 0
@@ -35,7 +36,7 @@ class BorrowersController < ApplicationController
     # Deducting and updating the borrowers record
     need = borrow.needed
     need -= amount
-    raised = borrow.update(raised: amount, needed: need)
+    raised = borrow.update(raised: total, needed: need)
 
     decrease = lender.money
     # If the money in the lenders account is less than the amount they want to raise, show error
@@ -48,11 +49,13 @@ class BorrowersController < ApplicationController
     end
     money_decreased = lender.update(money: decrease)
 
-    redirect_to :back
+    # in the History table: if the borrower.id == borrower.id, sum the amounts, put the sum into the table on the show page.
+
+    # redirect_to :back
   end
 
   private
   def borrow_params
-    params.require(:borrow).permit(:first_name, :last_name, :email, :password, :needed, :description, :purpose)
+    params.require(:borrow).permit(:first_name, :last_name, :email, :password, :password_confirmation,:needed, :description, :purpose)
   end
 end

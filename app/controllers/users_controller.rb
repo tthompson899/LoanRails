@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def lender_params
-    params.require(:register).permit(:first_name, :last_name, :email, :password, :money)
+    params.require(:register).permit(:first_name, :last_name, :email, :password, :password_confirmation, :money)
   end
 end

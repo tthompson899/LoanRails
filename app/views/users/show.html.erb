@@ -53,17 +53,19 @@
   <% @help.each do |help| %>
     <% help.histories.each do |lend| %>
       <% if lend.lender_id == @lender.id %>
-    <tr>
+     <tr>
       <td><%= help.first_name %> <%= help.last_name %></td>
       <td><%= help.purpose %></td>
       <td><%= help.description %></td>
       <td><%= help.needed %></td>
       <td><%= help.raised %></td>
+      <td>
       <% help.histories.each do |amount| %>
-      <td><%= amount.amount %></td>
-      <% end %>
-    </tr>
-      <% end %>
+          <p><%= amount.amount += amount.amount %></p>
+          </td>
+          <% end %>
+        <% end %>
+      </tr>
     <% end %>
   <% end %>
 </table>
