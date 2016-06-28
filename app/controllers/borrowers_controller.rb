@@ -28,8 +28,7 @@ class BorrowersController < ApplicationController
     # Adding and updating the borrowers record
     total =  borrow.raised
     total += amount
-    render json: total
-
+    
     if borrow.needed == nil
       borrow.needed = 0
     end
@@ -48,10 +47,7 @@ class BorrowersController < ApplicationController
       decrease -= amount
     end
     money_decreased = lender.update(money: decrease)
-
-    # in the History table: if the borrower.id == borrower.id, sum the amounts, put the sum into the table on the show page.
-
-    # redirect_to :back
+    redirect_to :back
   end
 
   private
