@@ -24,6 +24,9 @@
     <td>$<%= h.needed %></td>
     <td>$<%= h.raised %></td>
     <td>
+      <% if h.needed == 0 %>
+        <% flash[:danger] %>
+      <% else %>
       <form action="/borrowers/<%= h.id %>" method="post">
       <select name="raised" class="browser-default">
         <% @money.each do |mon| %>
@@ -35,6 +38,7 @@
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
           <input type="submit" value="Lend">
         </form>
+        <% end %>
     </td>
   </tr>
   <% end %>
@@ -50,21 +54,15 @@
     <th>Amount Raised</th>
     <th>Amount Lent</th>
   </tr>
-  <% @help.each do |help| %>
-    <% help.histories.each do |lend| %>
-      <% if lend.lender_id == @lender.id %>
-     <tr>
-      <td><%= help.first_name %> <%= help.last_name %></td>
-      <td><%= help.purpose %></td>
-      <td><%= help.description %></td>
-      <td><%= help.needed %></td>
-      <td><%= help.raised %></td>
-      <td>
-      <% help.histories.each do |amount| %>
-          <p><%= amount.amount += amount.amount %></p>
-          </td>
-          <% end %>
-        <% end %>
+  <% @lend.each do |help| %>
+      <% if help.lender_id == session[:user_id] %>
+       <tr>
+        <td><%= help.first_name %> <%= help.last_name %></td>
+        <td><%= help.purpose %></td>
+        <td><%= help.description %></td>
+        <td><%= help.needed %></td>
+        <td><%= help.raised %></td>
+         <td><%= help.amount %></td>
       </tr>
     <% end %>
   <% end %>

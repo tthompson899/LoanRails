@@ -12,41 +12,41 @@ class BorrowersController < ApplicationController
 
   def show
     @borrower = Borrower.find(params[:id])
-    @borrow = Borrower.all
+    @lend = Lender.joins(:histories).select("lenders.first_name, lenders.last_name, lenders.email").select("histories.amount, histories.borrower_id, histories.lender_id")
   end
 
   def update
     borrow = Borrower.find(params[:id])
     lender = Lender.find(params[:lender_id])
     amount = params[:raised].to_i
-    fund = History.create(amount: amount, lender: lender, borrower: borrow)
+
+    # If the money in the lenders account is less than the amount they want to raise, show error
+    decrease = lender.money
+    if decrease < amount
+      flash[:danger] = ["Oops, You don't have enought money to loan!"]
+      redirect_to :back and return
+    else
+      decrease -= amount
+      money_decreased = lender.update(money: decrease)
+    end
+
+    if borrow.needed == nil
+      borrow.needed = 0
+    end
 
     if borrow.raised == nil
       borrow.raised = 0
     end
 
     # Adding and updating the borrowers record
+    #Deducting and updating the borrowers record
+    need = borrow.needed
     total =  borrow.raised
     total += amount
-    
-    if borrow.needed == nil
-      borrow.needed = 0
-    end
-    # Deducting and updating the borrowers record
-    need = borrow.needed
     need -= amount
     raised = borrow.update(raised: total, needed: need)
 
-    decrease = lender.money
-    # If the money in the lenders account is less than the amount they want to raise, show error
-    if decrease < amount
-      flash[:danger] = ["Oops, You don't have enought money to loan!"]
-    elsif decrease == 0
-      flash[:danger] = ["Insufficient funds"]
-    else
-      decrease -= amount
-    end
-    money_decreased = lender.update(money: decrease)
+    fund = History.create(amount: amount, lender: lender, borrower: borrow)
     redirect_to :back
   end
 

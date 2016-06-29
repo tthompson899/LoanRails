@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @lender = Lender.find(params[:id])
     @help = Borrower.all
     @money = monies
+    @lend = Borrower.joins(:histories).select("borrowers.first_name, borrowers.last_name, borrowers.purpose, borrowers.description, borrowers.needed, borrowers.raised")
+            .select("histories.amount, histories.borrower_id, histories.lender_id")
   end
 
   private
