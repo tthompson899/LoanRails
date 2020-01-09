@@ -1,28 +1,14 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requirements: 
+- Postgresql
+- Ruby
+- Rails
 
-Things you may want to cover:
+To Run: 
+- `bundle update` to ensure latest from Gemfile
+- `rails s` this will load app locally
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Using the App: 
+- Register a user or log in if you are a returning user
+  - If registering a user, you will be required to select an amount that you wish to lend or borrow depending on your type of     account
