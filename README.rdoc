@@ -6,8 +6,8 @@ Requirements:
 - Rails
 
 To Run: 
-- `bundle update` to ensure latest from Gemfile
-- `rails s` this will load app locally
+- *bundle update* to ensure latest from Gemfile
+- *rails s* this will load app locally
 
 Using the App: 
 - Register a user or log in if you are a returning user
