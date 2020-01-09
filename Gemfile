@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass'
 gem 'sass-rails', '~> 5.0'
@@ -33,8 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 
 # gem 'rails-footnotes', '~> 4.0'
-gem 'materialize-sass'
-
+gem 'materialize-sass', '~> 1.0.0'
+gem 'bigdecimal', '~> 1.4'
 # Use unicorn as the app server
 # gem 'unicorn'
 
